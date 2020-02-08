@@ -1,0 +1,161 @@
+<html>
+<style>
+table,td,tr{
+padding : 10px;
+border: 1px solid black;
+border-collapse: collapse;
+margin: 50px;
+text-align: center;
+}
+#output,#display{
+text-align: right;
+}
+</style>
+<script>
+var check=0,a=0,b=0,c=0,count=0,opera='';
+function compute(){
+var temp=a;
+	switch(opera){
+			//console.log('a+" "+opera[0]+" "+b');
+			case '+': a+=b; break;
+			case '-': a-=b; break;
+			case '/': a/=b; break;
+			case '*': a*=b; break;
+			case 'M': a%=b; break; 
+			case 'S': a=Math.sqrt(a);
+						
+						break;
+			//opera[0]=opera[1];
+			
+		}
+	if(opera=='S')
+	document.getElementById('display').innerHTML='sqrt('+a+')';
+	else
+	document.getElementById('display').innerHTML=temp+' '+opera+' '+b;
+	document.getElementById('output').innerHTML=a;
+	
+}
+</script>
+<script>
+function clrscr(){
+	a=0;b=0;
+	opera='';
+	document.getElementById('output').innerHTML='';
+	document.getElementById('display').innerHTML='';
+}
+
+</script>
+<script>
+function input(x){
+	if(opera.length==0){
+		a=(a*10)+x;
+		document.getElementById('output').innerHTML=a;
+		document.getElementById('display').innerHTML=a;
+		return true;
+	}
+	else if(opera.length==1){
+		b=(b*10)+x;
+		document.getElementById('output').innerHTML=b;
+		document.getElementById('display').innerHTML=a+' '+opera+' '+b;
+		return true;
+	}
+	else if(opera.length>1){
+		alert('Invalid Operator');
+	}
+	else if(a!=0&&b!=0){
+		switch(opera){
+//console.log(a+" "+opera[0]+" "+b);		
+			case '+': a+=b; break;
+			case '-': a+=b; break;
+			case '/': a/=b; break;
+			case '*': a*=b; break;
+			case 'M': a%=b; break;
+			case 'S': Math.sqrt(a); break;
+		}
+		b=0;
+		opera=opera;
+		opera="";
+		document.getElementById('output').innerHTML=a;
+		a=0;
+	}
+}
+
+</script>
+<script>
+function oper(x){
+	if(opera.length==0){
+	if(a==0){
+			alert('invalid operation');
+			clrscr();
+			return false;
+	}
+	if(x=='S'){
+		opera=x;
+		compute();
+		opera='';
+	}else{
+	opera=x;
+	document.getElementById('display').innerHTML=a+' '+x;
+	}
+	}
+	else if(opera.length==1){
+		if(a==0||b==0){
+			alert('invalid operation');
+			clrscr();
+			return false;
+		}
+		
+		var temp=opera[1];
+		opera[1]='';
+		compute();
+		//document.getElementById('output').innerHTML=a;
+		opera[0]=temp;
+		b=0;
+	}
+	else alert('invalid operator');
+}
+
+</script>
+<body>
+<H2>Press Clear before any operation:
+</H2>	
+<table>
+	<tr>
+	<td id="display" height = "50" colspan = '5'></td>
+	</tr>
+	<tr>
+	<td id="output" height = "40" colspan = '5'></td>
+	</tr>
+	<tr>
+	<td  width='25'id='clear' onclick= 'clrscr()'>Clr </td>
+	<td  width='25' class='oper' onclick='oper("S")'>Sqrt</td>
+	<td  width='25' class='oper' onclick='oper("M")'>Mod </td>
+	<td  width='25'class='oper' ></td>
+	</tr>
+	<tr>
+	<td class='num' onclick='input(7)'>7</td>
+	<td class='num' onclick='input(8)'>8</td>
+	<td class='num' onclick='input(9)'>9</td>
+	<td  class='oper' onclick='oper("/")'>/</td>
+	</tr>
+	<tr>
+	<td class='num' onclick='input(4)'>4</td>
+	<td class='num' onclick='input(5)'>5</td>
+	<td class='num' onclick='input(6)'>6</td>
+	<td  class='oper' onclick='oper("*")'>*</td>
+	</tr>
+	<tr>
+	<td class='num' onclick='input(1)'>1</td>
+	<td class='num' onclick='input(2)'>2</td>
+	<td class='num' onclick='input(3)'>3</td>
+	<td  class='oper' onclick='oper("-")'>-</td>
+	</tr>
+	<tr>
+	<td class='minus' ></td>
+	<td class='num' onclick='input(0)'>0</td>
+	<td onclick = 'compute()'>=</td>
+	<td  class='oper' onclick='oper("+")'>+</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+<title>My DOM Test-1</title>
+</head>
+<body>
+
+<p>
+hello
+</p>
+
+ <script type="text/javascript">
+
+ var htmlNode=document.firstChild;
+
+
+ var bodyNode=htmlNode.childNodes[1];
+  alert(bodyNode.nodeName);
+
+ var pNode=bodyNode.childNodes[0];
+ alert(pNode.nodeName);
+
+var tNode=pNode.firstChild;
+alert(tNode.nodeName);
+alert(tNode.nodeValue);
+
+</script>
+</body>
+</html>

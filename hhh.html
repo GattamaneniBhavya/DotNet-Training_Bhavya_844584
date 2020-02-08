@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+</head>
+<body>
+<form method="post" onsubmit="return validateDate();">
+
+user name:<input type="text" id="un"/>
+<br/>
+password:<input type="password" id="pwd"/> 
+<br/>
+<input type="submit" value="login user"/>
+
+</form>
+<script type="text/javascript">
+
+function validateDate()
+{
+var Unstr=document.getElementById("un").value;
+var pwstr=document.getElementById("pwd").value;
+if(Unstr.length==0)
+{
+alert("user name is must");
+return false;
+}
+if(pwstr.length==0)
+{
+alert("password  is mandatory");
+return false;
+}
+return true;
+}
+
+</script>
+</body>
+</html>
