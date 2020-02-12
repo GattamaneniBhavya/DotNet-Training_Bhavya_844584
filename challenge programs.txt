@@ -1,0 +1,229 @@
+1.Design a class called stopwatch.The job of this class is to simulate a stopwatch.it should provide two methods.
+start and stop.We call the start method first,and the stop method next.Then we ask the stopwatch about the duration
+between start and stop.Duration should be a value in Timespan.Display the duration on the console.
+
+We should also be able to use a stopwatch multiple times.So we may start and stop it and then start and stop it again.
+Make sure the duration value each time is calculated properly.
+
+We should not be able to start a stopwatch twice in a row (because that may overwrite the intial start time).
+So that class should throw an invalidOperationException if its started twice.
+
+
+answer:
+
+
+       using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = "";
+            while (true)
+            {
+                Console.Write("Give input [start/stop]: ");
+                string str2 = Console.ReadLine();
+                Console.WriteLine();
+                if (str == str2 && str == "start")
+                {
+                    Console.WriteLine("StopWatch is alread started!!");
+                    continue;
+                }
+                else if (str == str2 && str == "stop")
+                {
+                    Console.WriteLine("StopWatch is alread stoped!!");
+                    continue;
+                }
+                if (str2 == "start")
+                {
+                    Console.WriteLine("StopWatch Started!!");
+                    StopWatch.Start();
+                }
+                else if (str2 == "stop")
+                {
+                    Console.WriteLine("StopWatch Stopped!!");
+                    Console.WriteLine("\nTime\n ");
+                    StopWatch.Stop();
+                    Console.Write("\nDo you want to start the stopwatch again[yes/no]: ");
+                    string res = Console.ReadLine();
+                    if (res.ToLower() == "yes")
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Program..exited Successfully...");
+                        break;
+
+                    }
+                }
+                str = str2;
+                
+                
+            }
+            
+        }
+    }
+
+
+
+    public class StopWatch
+    {
+        private static DateTime time;
+
+        public static void Start()
+        {
+            time = DateTime.Now;
+
+        }
+
+        public static void Stop()
+        {
+            Console.WriteLine("Time is " + (DateTime.Now - time));
+        }
+    }
+
+    
+
+
+
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   2.These are the following database tables...
+
+                Inner Join: It is used to retrieve matching records from both the tables
+
+Department:
+
+Department_No	Department_Name
+10	            ECE
+20	            ECE   
+30	            CSE
+40	            IT
+
+Employee Details:
+
+Employee_No	Emp_Name	Address	       AGE        Department_No	   Salary
+
+   1             Anil          Hyderabad       23           10              20000            
+   
+   2             Sunil         Hyderabad       22           10              21000
+
+
+   3             Ajay          Chennai         24           20              23000 
+
+   4             Vijay         Chennai         25           30              22000
+
+   5             James         Hyderabad       24           50              230000
+
+  
+Q1) Write a Query to display employee details who are working in ECE department?
+
+   Answer:
+
+    1.SELECT employee.employee_name, employee.address, employee.salary, employee.age, 
+    2.FROM Department D
+    3.INNER JOIN Employees E
+    4.ON department.D_no=employee.D_no WHERE department.D_name= ‘ECE’
+
+
+Q2) Write a Query to display employee details?
+
+
+      Answer:
+          
+        1.SELECT * FROM employee;
+
+
+Q3)  Write a Query to display employee details along with department_name?
+
+       Answer:1. SELECT employee.employee_no, employee.employee_name, employee.address, employee.salary, employee.age, department.department_name 
+       2.FROM department D
+       3.INNER JOIN employee E
+       4.ON department.D_no=employee.D_no
+
+Q4) Write a Query to display employee details whose sal>20000 and who is working in ECE department?
+
+
+Answer:
+
+  1.SELECT employee.employee_no, employee.employee_name, employee.address, employee.salary, employee.age 
+  2.FROM department D
+  3.INNER JOIN employee E  
+  4.ON dept.D_no=emp.D_no 
+  5.WHERE dept.D_name=’ECE’ and E.salary>20000
+
+
+
+Q5) Write a Query to display employee details along with department_name and who is working in ECE department, whose name  starts with a?
+
+
+      Answer:
+
+  Answer:
+
+  1.SELECT emp.e_no, emp.e_name, emp.address, emp.salary, emp.age, dept.dname 
+  2.FROM department D
+  3.INNER JOIN employee E
+  4.ON dept.D_no=emp.D_no 
+  5.WHERE dept.D_name=’ECE’ and emp.E_name like ‘a%'
+
+
+Q6) Write a Query to display employee details along with department_name and who are staying in hyderabad?
+
+
+    Answer:
+         1. SELECT emp.e_no, emp.e_name, emp.address, emp.salary, emp.age, dept.d_name 
+         2.FROM department D
+         3.INNER JOIN employee E 
+         4.ON dept.D_no=emp.D_no 
+         5.WHERE E.address=’hyd’
+
+Q7)  Write a Query to display employee details whose salary>20000 and whose age>20 & who is working in ECE department?
+
+
+     Answer:
+       1. SELECT emp.e_no, emp.e_name, emp.address, emp.salary, emp.age, dept.d_name 
+        2.FROM department D
+        3.INNER JOIN employee E
+        4.ON dept.D_no=emp.D_no 
+        5.WHERE E.age>20 and E.salary>20000 and dept.D_name=’ECE’
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+   3.Write an HTML table tag sequence that outputs the following:
+      50 pcs 100 500
+      10 pcs 5 50
+
+
+
+
+
+Answers.
+
+            <table>
+            <tr> 
+           <td>50 pcs</td> 
+           <td>100</td> 
+           <td>500</td> 
+           </tr> 
+           <tr> 
+           <td>10 pcs</td> 
+           <td>5</td> 
+           <td>50</td> 
+           </tr> 
+          </table>
+
+
